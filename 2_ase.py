@@ -123,7 +123,7 @@ class Matrix():
 
 
 # hlavni program
-# vytvoreni a nacteni prvni matice
+
 m1 = Matrix()
 m1.load_from_input_fast()
 m1.print_m()
@@ -132,5 +132,15 @@ m2 = Matrix()
 m2.load_from_input_fast()
 m2.print_m()
 
-m3 = m1.__mul__(m2)
+operation = input("Znak operaci (+/-/*): ")
+
+if operation == "*":
+    m3 = m1.__mul__(m2)
+elif operation == "+":
+    m3 = m1.__add__(m2)
+elif operation == "-":
+    m3 = m1.__sub__(m2)
+else:
+    raise Exception("Neznama operace")
+
 m3.print_m()
