@@ -11,7 +11,7 @@ class Matrix():
         self.r = len(matrix_values)
         self.s = len(matrix_values[0])
 
-    def load_from_input_fast(self):
+    def read_from_input_fast(self):
         matrix_string = input("Zadejte hodnoty matice, radky oddelene teckou: ")
         lines = matrix_string.split(".")
         self.r = len(lines)
@@ -25,7 +25,7 @@ class Matrix():
             self.matrix_values.append(current_line)
 
     # nacte matici ze standardniho vstupu
-    def load_from_std_input(self):
+    def read_from_input(self):
         self.r = int(input("Zadejte pocet radku: "))
         self.s = int(input("Zadejte pocet sloupcu: "))
 
@@ -59,7 +59,7 @@ class Matrix():
         result_matrix.set_values(result_values)
         return result_matrix
 
-    # odecte dve matice
+    # odecte dve matice, vrati novou matici
     def __sub__(self, other):
         result_values = []
         if self.r != other.r or self.s != other.s:
@@ -75,6 +75,7 @@ class Matrix():
         result_matrix.set_values(result_values)
         return result_matrix
 
+    # vynasobi dve matice, vrati novou matici
     def __mul__(self, other):
         if self.s != other.r:
             raise Exception("chyba vstupu, matice nemaji spravnou velikost")
@@ -95,41 +96,15 @@ class Matrix():
         result_matrix.set_values(result_values)
         return result_matrix
 
-    def main(self, other):
-        operace = input("Znak operaci (+/-/*): ")
-        self.print_m(self.matrix_values)
-        print(operace)
-        other.print_m(other.matice)
-        print("=")
-        print()
-        if operace == "*":
-            if self.s != other.r:
-                print("Error. Chybny vstup!")
-            else:
-                self.__mul__(other)
-                self.print_m(self.__mul__(other))
-        elif operace == "+":
-            if self.r != other.r and self.s != other.s:
-                print("Error. Chybny vstup!")
-            else:
-                self.__add__(other)
-                self.print_m(self.__add__(other))
-        else:
-            if self.r != other.r and self.s != other.s:
-                print("Error. Chybny vstup!")
-            else:
-                self.__sub__(other)
-                self.print_m(self.__sub__(other))
-
 
 # hlavni program
 
 m1 = Matrix()
-m1.load_from_input_fast()
+m1.read_from_input_fast()
 m1.print_m()
 
 m2 = Matrix()
-m2.load_from_input_fast()
+m2.read_from_input_fast()
 m2.print_m()
 
 operation = input("Znak operaci (+/-/*): ")
