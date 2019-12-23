@@ -86,7 +86,7 @@ class Matrix():
         for n in range(0, self.r):
             for j in range(0, s2):
                 for i in range(0, self.s):
-                    s = s + self.matrix_values[n][i] * self.matrix_values[i][j]
+                    s = s + self.matrix_values[n][i] * other.matrix_values[i][j]
                 d.append(s)
                 s = 0
             result_values.append(d)
