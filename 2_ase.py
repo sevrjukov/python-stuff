@@ -98,24 +98,40 @@ class Matrix():
 
 
 # hlavni program
+# nacist vstup od uzivatele (matice oddelene operatory, vstup ukoncen zadanim rovnitka
+operator = ""
+matrices_list = []
+operators_list = []
+while operator != "=":
+    m = Matrix()
+    m.read_from_input()
+    matrices_list.append(m)
+    operator = input("Zadejte operaci (+/-/*/=): ")
+    if operator != "=":
+        operators_list.append(operator)
 
-m1 = Matrix()
-m1.read_from_input_fast()
-m1.print_m()
+# vyhodnoceni
+# nejdriv redukujeme vsechny operace nasobeni
+reduced_matrices_list = [matrices_list.pop(0)]
+reduced_operators_list = []
+while len(matrices_list) > 0:
+    operator = operators_list.pop(0)
+    if operator != "*":
+        reduced_matrices_list.append(matrices_list.pop(0))
+        reduced_operators_list.append(operator)
+    else:
+        m1 = reduced_matrices_list.pop()
+        m2 = matrices_list.pop(0)
+        reduced_matrices_list.append(m1.__mul__(m2))
 
-m2 = Matrix()
-m2.read_from_input_fast()
-m2.print_m()
+# ted projdeme redukovany seznam zleva doprava a aplikujeme operace
+result = reduced_matrices_list.pop(0)
+for operator in reduced_operators_list:
+    if operator == '+':
+        result = result.__add__(reduced_matrices_list.pop(0))
+    elif operator == "-":
+        result = result.__sub__(reduced_matrices_list.pop(0))
+    else:
+        raise Exception("chyba vstupu, neznamy operator")
 
-operation = input("Znak operaci (+/-/*): ")
-
-if operation == "*":
-    m3 = m1.__mul__(m2)
-elif operation == "+":
-    m3 = m1.__add__(m2)
-elif operation == "-":
-    m3 = m1.__sub__(m2)
-else:
-    raise Exception("Neznama operace")
-
-m3.print_m()
+m.print_m()
