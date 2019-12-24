@@ -22,6 +22,6 @@ def valid_test(d):
                     exit()
     print("pocet tagu: ", tag, "\ntext validni ")
 
-download = open("texthw04.txt", "r+")
+download = open("texthw04.xml", "r+")
 d = download.read()
 valid_test(d)
