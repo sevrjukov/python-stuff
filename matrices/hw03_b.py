@@ -1,4 +1,4 @@
-class Matrix():
+class Matrix:
 
     # konstruktor
     def __init__(self):
@@ -13,6 +13,9 @@ class Matrix():
 
     def read_from_input_fast(self):
         matrix_string = input("Zadejte hodnoty matice, radky oddelene teckou: ")
+        self.parse_from_string(matrix_string)
+
+    def parse_from_string(self, matrix_string):
         lines = matrix_string.split(".")
         self.r = len(lines)
         for line_string in lines:
@@ -104,7 +107,7 @@ matrices_list = []
 operators_list = []
 while operator != "=":
     m = Matrix()
-    m.read_from_input()
+    m.read_from_input_fast()
     matrices_list.append(m)
     operator = input("Zadejte operaci (+/-/*/=): ")
     if operator != "=":
@@ -134,4 +137,4 @@ for operator in reduced_operators_list:
     else:
         raise Exception("chyba vstupu, neznamy operator")
 
-m.print_m()
+result.print_m()

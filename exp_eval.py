@@ -25,9 +25,14 @@ while len(matrices_list) > 0:
         m2 = matrices_list.pop(0)
         reduced_matrices_list.append(m1 * m2)
 
-# pak provedeme vyhodnoceni zbyvajicich operaci zleva doprava
-print(reduced_operators_list)
-print(reduced_matrices_list)
+# ted projdeme redukovany seznam zleva doprava a aplikujeme operace
+result = reduced_matrices_list.pop(0)
+for operator in reduced_operators_list:
+    if operator == '+':
+        result = result + reduced_matrices_list.pop(0)
+    elif operator == "-":
+        result = result - reduced_matrices_list.pop(0)
+    else:
+        raise Exception("chyba vstupu, neznamy operator")
 
-reduced_matrices_list.reverse()
-
+print (result)
