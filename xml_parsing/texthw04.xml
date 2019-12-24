@@ -1,3 +1,15 @@
-<a>
-        <b paramname="value"></b>
-</a>
+<equation variable="a">
+  <add value="10"/>
+  <add value="20"/>
+  <sub value="40"/>
+</equation>
+<equation variable="b">
+  <add value="30"/>
+  <add value="40"/>
+  <sub value="-47"/>
+</equation>
+<equation variable="c">
+  <add value="0"/>
+  <add value="-89"/>
+  <sub value="-54564"/>
+</equation>
